@@ -1,13 +1,16 @@
 from inicia_bd import associa_nodes
-from pessoas import eu
-from consultas import amigos_em_comum
+from pessoas import tem_dados, MEU_NOME
+from consultas import amigos_em_comum, menor_caminho_entre
 
 
-if not eu():
+if not tem_dados():
     associa_nodes(print)
+# print(
+#     amigos_em_comum(
+#         'João Miguel da Costa',
+#         'Mariane da Paz'
+#     )
+# )
 print(
-    amigos_em_comum(
-        'João Miguel da Costa',
-        'Mariane da Paz'
-    )
+    menor_caminho_entre(MEU_NOME, 'MAGAZINE LUIZA')
 )

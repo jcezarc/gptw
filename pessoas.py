@@ -20,5 +20,5 @@ def cria_pessoas(qtd: int) -> list[Pessoa]:
     return [Pessoa(nome=n) for n in nomes]
 
 
-def eu() -> Pessoa:
-    return repo.match(Pessoa).where(nome=MEU_NOME).first()
+def tem_dados() -> bool:
+    return repo.match(Pessoa).where(nome=MEU_NOME).exists()
