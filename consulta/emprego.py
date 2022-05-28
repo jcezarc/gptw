@@ -1,9 +1,9 @@
 from modelos import repo
 
-CARGOS = ['gerente', 'funcionário', 'RH']
-GERENTE_ID = 0
-FUNCIONARIO_ID = 1
-RH_ID = 2
+CARGOS = ['funcionário', 'RH', 'gerente']
+FUNCIONARIO_ID = 0
+RH_ID = 1
+GERENTE_ID = 2
 
 def desempregados() -> list:
     dataset = repo.graph.run('''
@@ -13,12 +13,16 @@ def desempregados() -> list:
     return sorted([row['p']['nome'] for row in dataset])
 
 
-def pessoas_por_cargo(id_cargo: int) -> list:
+def pessoas_por_cargo(id_cargo: int, empresa: str='') -> list:
     dataset = repo.graph.run('''
-        match(p:Pessoa)-[:TRABALHA_EM{cargo:$cargo}]->()return p
-        ''',
+        match(p:Pessoa)-[{}]->({})return p
+        '''.format(
+            ':TRABALHA_EM{cargo:$cargo}',
+            'e:Empresa{nome:$empresa}' if empresa else ''
+        ),
         parameters={
-            'cargo': CARGOS[id_cargo]
+            'cargo': CARGOS[id_cargo],
+            'empresa': empresa
         }
     )
     return sorted([row['p']['nome'] for row in dataset])
