@@ -2,6 +2,7 @@ from random import sample, choice, randint
 from modelos import Pessoa #, Empresa
 from empresas import grava_empresas
 from pessoas import cria_pessoas
+from consulta.emprego import CARGOS
 
 PESSOAS_POR_EMPRESA = 5 # 4 funcionários e uma desempregada
 
@@ -25,7 +26,7 @@ def associa_nodes(notifica: callable):
                 pessoa.trabalha_em.add(
                     empresa,
                     properties={
-                        'cargo': choice(['gerente', 'funcionário', 'RH']),
+                        'cargo': choice(CARGOS),
                         'meses': randint(1, 240), # até 20 anos
                     }
                 )

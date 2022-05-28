@@ -1,4 +1,4 @@
-from modelos import Empresa, Pessoa, repo
+from modelos import repo
 from caminho import Caminho
 
 def menor_caminho_entre(pessoa: str, empresa: str) -> Caminho:
