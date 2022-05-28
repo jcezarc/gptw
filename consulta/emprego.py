@@ -26,7 +26,7 @@ def pessoas_por_cargo(id_cargo: int) -> list:
 def colegas_de(pessoa: str) -> list:
     dataset = repo.graph.run('''
         match(:Pessoa{nome:$pessoa})-[:TRABALHA_EM]->
-        (e:Empresa)<-[:TRABALHA_EM]-(p:Pessoa)return p
+        (:Empresa)<-[:TRABALHA_EM]-(p:Pessoa)return p
         ''',
         parameters={
             'pessoa': pessoa,
