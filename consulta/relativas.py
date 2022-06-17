@@ -14,10 +14,10 @@ def menor_caminho_entre(pessoa: str, empresa: str) -> Caminho:
             'empresa': empresa
         }
     )
-    caminho = Caminho()
+    caminho = Caminho(pessoa)
     for row in dataset:
         for path in row['p']:
-            caminho.add(*path.nodes, pessoa)
+            caminho.add(*path.nodes)
     return caminho
 
 def amigos_em_comum(pessoa1: str, pessoa2: str) -> list:
